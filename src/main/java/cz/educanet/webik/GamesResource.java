@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 @Produces(MediaType.APPLICATION_JSON)
 @Path("games")
+
 public class GamesResource {
 
     @Inject
@@ -22,31 +23,22 @@ public class GamesResource {
     @GET
     @Path("{id}")
     public Response getGame(@PathParam("id") int id) {
-        return  Response.ok(manager.getGames(id)).build();
+        return  Response.ok(GamesManager.getGame(id)).build();
     }
 
     @POST
-    public Response createGame(Games game){
-        if(!manager.create(game))
+    public Response createGame(Games games){
+        if(!manager.create(games))
             return Response.status(400).build();
 
-        return Response.ok(game).build();
-    }
-
-    @PUT
-    @Path("{id}")
-    public Response editGame(@PathParam("id") int id, Games game) {
-        if(!manager.create(game))
-            return Response.status(400).build();
-
-        return Response.ok(game).build();
+        return Response.ok(games).build();
     }
 
     @DELETE
     @Path("{id}")
     public Response deleteGame(@PathParam("id") int id) {
         if(manager.removeGame(id)){
-            return Response.ok("Game removed").build();
+            return Response.ok("The game has been removed. ").build();
         } else {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }

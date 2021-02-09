@@ -2,10 +2,9 @@ package cz.educanet.webik;
 
 public class Games {
 
-    public int id;
-    public String name;
-    public int price;
 
+    public String name, studio;
+    public int id, rating;
 
     public int getId() {
         return id;
@@ -23,11 +22,11 @@ public class Games {
         this.name = name;
     }
 
-    public int getPrice() {
-        return price;
+    public int getRating() {
+        return rating;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 }
