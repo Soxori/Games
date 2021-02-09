@@ -21,7 +21,7 @@ public class GamesManager {
         }
         return true;
     }
-    public Games getGame (int id){
+    public static Games getGame (int id){
         return games.stream()
                 .filter(gamesStream -> id == gamesStream.getId())
                 .findAny()
