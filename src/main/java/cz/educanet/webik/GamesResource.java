@@ -4,7 +4,6 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.ArrayList;
 
 @Produces(MediaType.APPLICATION_JSON)
 @Path("games")
@@ -23,16 +22,26 @@ public class GamesResource {
     @GET
     @Path("{id}")
     public Response getGame(@PathParam("id") int id) {
-        return  Response.ok(GamesManager.getGame(id)).build();
+        return  Response.ok(manager.getGame(id)).build();
     }
 
     @POST
-    public Response createGame(Games games){
-        if(!manager.create(games))
+    public Response createGame(Games game){
+        if(!manager.create(game))
             return Response.status(400).build();
 
-        return Response.ok(games).build();
+        return Response.ok(game).build();
     }
+
+    @PUT
+    @Path("{id}")
+    public Response editGame(@PathParam("id") int id, Games game) {
+        if(!manager.editGame(id, game)) {
+            return Response.ok().build();
+        }
+        else return Response.status(Response.Status.BAD_REQUEST).build();
+    }
+
 
     @DELETE
     @Path("{id}")

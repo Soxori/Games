@@ -12,16 +12,19 @@ public class GamesManager {
     public ArrayList<Games> getGames(){
         return games;
     }
-    public boolean create(Games games) {
-        if(games.getRating() < 0 || games.getRating() > 100)
+    public boolean create(Games game) {
+        if(game.getRating() < 0 || game.getRating() > 100)
             return false;
-        int generatedId = (int) (Math.random()*(100 +1));
-        if (gameCheck(generatedId)){
-            games.setId(generatedId);
+
+        int newId = (int) (Math.random()*(100 +1));
+
+        if (gameCheck(newId)){
+            game.setId(newId);
+            games.add(game);
         }
         return true;
     }
-    public Games getGame (int id){
+    public Games getGame(int id){
         return games.stream()
                 .filter(gamesStream -> id == gamesStream.getId())
                 .findAny()
@@ -38,6 +41,15 @@ public class GamesManager {
         }
         return true;
     }
+    public boolean editGame(int id, Games game){
+        if(gameCheck(id)){
+            games.add(game);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
 
 }

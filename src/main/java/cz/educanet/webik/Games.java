@@ -3,7 +3,7 @@ package cz.educanet.webik;
 public class Games {
 
 
-    public String name, studio;
+    public String name;
     public int id, rating;
 
     public int getId() {
