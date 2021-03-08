@@ -12,13 +12,14 @@ public class GamesManager {
     public ArrayList<Games> getGames(){
         return games;
     }
+
     public boolean create(Games game) {
         if(game.getRating() < 0 || game.getRating() > 100)
             return false;
 
-        int newId = (int) (Math.random()*(100 +1));
+        int newId = getGames().size() + 1;
 
-        if (gameCheck(newId)){
+        if (!gameCheck(newId)){
             game.setId(newId);
             games.add(game);
         }
@@ -34,22 +35,14 @@ public class GamesManager {
         return  games.remove(getGame(id));
     }
     public boolean gameCheck(int id) {
-        for (int i = 0; i < 100; i++){
-            if (id != games.get(id).id) {
-                return false;
-            }
-        }
-        return true;
+        return getGame(id) != null;
     }
     public boolean editGame(int id, Games game){
         if(gameCheck(id)){
-            games.add(game);
+            games.set(id, game);
             return true;
         } else {
             return false;
         }
     }
-
-
-
 }
