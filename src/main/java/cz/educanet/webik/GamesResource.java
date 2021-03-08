@@ -29,7 +29,6 @@ public class GamesResource {
     public Response createGame(Games game){
         if(!manager.create(game))
             return Response.status(400).build();
-
         return Response.ok(game).build();
     }
 

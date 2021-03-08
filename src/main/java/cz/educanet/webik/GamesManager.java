@@ -18,7 +18,6 @@ public class GamesManager {
             return false;
 
         int newId = getGames().size() + 1;
-
         if (!gameCheck(newId)){
             game.setId(newId);
             games.add(game);
