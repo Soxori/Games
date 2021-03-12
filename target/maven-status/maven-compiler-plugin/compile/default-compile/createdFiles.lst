@@ -1,4 +1,7 @@
 cz\educanet\webik\Games.class
 cz\educanet\webik\JAXRSconfig.class
+cz\educanet\webik\UsersManager.class
+cz\educanet\webik\UsersResource.class
 cz\educanet\webik\GamesResource.class
+cz\educanet\webik\User.class
 cz\educanet\webik\GamesManager.class
