@@ -20,26 +20,22 @@ public class UsersResource {
 
     @POST
     @Path("register")
-    public Response createUser(
-            @FormParam("username") String username,
-            @FormParam("password") String password
-    ) {
-        User user = new User(username, password);
-        if(user != null) {
-            return Response.ok("This username already exists").build();
+    public Response createUser(User user) {
+        for (User name : names) {
+            if(user.username.equals(name.username))
+                return Response.status(400).build();
         }
         names.add(user);
-        return Response.ok("This username:" + user + "is ok").build();
+        return Response.ok().build();
     }
 
     @POST
     @Path("login")
-    public Response loginUser(@FormParam("username") String username, @FormParam("password") String password) {
-        for(int x = 0; x < names.size(); x++) {
-            User user = names.get(x);
-            if (user.username.equals(username) & user.password.equals(password)) {
+    public Response loginUser(User user) {
+        for (User tempuser : names) {
+            if (user.username.equals(tempuser.username) && user.password.equals(tempuser.password)) {
                 manager.user = user;
-                return Response.ok("User is logged").build();
+                return Response.ok().build();
             }
 
         }
@@ -48,7 +44,7 @@ public class UsersResource {
 
     @GET
     public Response getLoggedUser() {
-        return  Response.ok(manager.user).build();
+        return  Response.ok(names).build();
     }
 
 }

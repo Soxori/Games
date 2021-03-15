@@ -46,9 +46,9 @@ public class GamesResource {
     @Path("{id}")
     public Response deleteGame(@PathParam("id") int id) {
         if(manager.removeGame(id)){
-            return Response.ok("The game has been removed. ").build();
+            return Response.ok().build();
         } else {
-            return Response.status(Response.Status.BAD_REQUEST).build();
+            return Response.status(404).build();
         }
     }
 
