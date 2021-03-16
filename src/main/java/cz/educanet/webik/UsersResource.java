@@ -15,12 +15,15 @@ public class UsersResource {
     @Inject
     private UsersManager manager;
 
-    public static List<User> names = new ArrayList<User>();
+    public static List<User> names = new ArrayList<>();
 
 
     @POST
     @Path("register")
     public Response createUser(User user) {
+        if(user.username.equals("")|| user.password.equals("")) {
+            return Response.status(400).build();
+        }
         for (User name : names) {
             if(user.username.equals(name.username))
                 return Response.status(400).build();
@@ -39,7 +42,7 @@ public class UsersResource {
             }
 
         }
-        return Response.status(Response.Status.NOT_FOUND).build();
+        return Response.status(400).build();
     }
 
     @GET

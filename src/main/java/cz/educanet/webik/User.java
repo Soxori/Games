@@ -1,5 +1,6 @@
 package cz.educanet.webik;
 
+
 public class User  {
 
     public String username;
